@@ -1,0 +1,9 @@
+# Ignore everything in these folders
+Data/*
+raw_data/*
+Training/*
+
+# But keep the folders
+!Data/.gitkeep
+!raw_data/.gitkeep
+!Training/.gitkeep

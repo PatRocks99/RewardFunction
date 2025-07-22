@@ -47,6 +47,7 @@ def process_side(data):
         return 0
     elif minimum > 0.19:
         reward = (-1/(5.7*minimum-1))
+        
     else:
         #crash
         return -50
@@ -61,7 +62,7 @@ def remove_zeros_and_find_min(arr):
         return 1  # Return None if no elements are left
 
     # Find the minimum value in the modified array
-    min_value = min(arr_no_zeros)
+    min_value = min(arr_no_zeros) 
 
     return min_value
 
