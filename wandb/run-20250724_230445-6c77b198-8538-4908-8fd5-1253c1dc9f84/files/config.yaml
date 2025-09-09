@@ -1,0 +1,67 @@
+_wandb:
+    value:
+        cli_version: 0.20.1
+        m: []
+        python_version: 3.10.18
+        t:
+            "1":
+                - 1
+            "2":
+                - 1
+            "3":
+                - 13
+                - 14
+                - 16
+                - 55
+            "4": 3.10.18
+            "5": 0.20.1
+            "8":
+                - 3
+            "12": 0.20.1
+            "13": windows-amd64
+actor_dropout:
+    value: null
+actor_lr:
+    value: 0.0003
+batch_size:
+    value: 256
+beta:
+    value: 3
+buffer_size:
+    value: 1000000
+checkpoints_path:
+    value: Model\IQL-custom-6eb93b5b
+data_folder:
+    value: Training
+device:
+    value: cuda
+discount:
+    value: 0.99
+eval_freq:
+    value: 5000
+group:
+    value: IQL-Custom
+iql_deterministic:
+    value: false
+iql_tau:
+    value: 0.7
+load_model:
+    value: ""
+max_timesteps:
+    value: 100000
+name:
+    value: IQL-custom-6eb93b5b
+normalize:
+    value: true
+normalize_reward:
+    value: false
+project:
+    value: CORL
+qf_lr:
+    value: 0.0003
+seed:
+    value: 0
+tau:
+    value: 0.005
+vf_lr:
+    value: 0.0003

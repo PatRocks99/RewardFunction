@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "c:\RewardFunction\iql_custom.py", line 588, in <module>
+    train()
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\pyrallis\argparsing.py", line 158, in wrapper_inner
+    response = fn(cfg, *args, **kwargs)
+  File "c:\RewardFunction\iql_custom.py", line 562, in train
+    wandb_init(asdict(config))
+  File "c:\RewardFunction\iql_custom.py", line 157, in wandb_init
+    wandb.run.save()
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\wandb\sdk\wandb_run.py", line 391, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\wandb\sdk\wandb_run.py", line 449, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\wandb\sdk\wandb_run.py", line 436, in wrapper
+    return func(self, *args, **kwargs)
+TypeError: Run.save() missing 1 required positional argument: 'glob_str'

@@ -1,0 +1,15 @@
+{"time":"2025-07-24T23:00:33.0711296-05:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"C:\\RewardFunction\\wandb\\run-20250724_230032-ef6f1a89-2713-4391-9dc9-e92557a47d18\\logs\\debug-core.log"}
+{"time":"2025-07-24T23:00:33.257832-05:00","level":"INFO","msg":"stream: created new stream","id":"ef6f1a89-2713-4391-9dc9-e92557a47d18"}
+{"time":"2025-07-24T23:00:33.257832-05:00","level":"INFO","msg":"stream: started","id":"ef6f1a89-2713-4391-9dc9-e92557a47d18"}
+{"time":"2025-07-24T23:00:33.257832-05:00","level":"INFO","msg":"writer: Do: started","stream_id":"ef6f1a89-2713-4391-9dc9-e92557a47d18"}
+{"time":"2025-07-24T23:00:33.257832-05:00","level":"INFO","msg":"handler: started","stream_id":"ef6f1a89-2713-4391-9dc9-e92557a47d18"}
+{"time":"2025-07-24T23:00:33.257832-05:00","level":"INFO","msg":"sender: started","stream_id":"ef6f1a89-2713-4391-9dc9-e92557a47d18"}
+{"time":"2025-07-24T23:00:33.5083938-05:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-24T23:00:33.7073218-05:00","level":"INFO","msg":"stream: closing","id":"ef6f1a89-2713-4391-9dc9-e92557a47d18"}
+{"time":"2025-07-24T23:00:33.7073218-05:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-24T23:00:33.7073218-05:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-24T23:00:34.0866437-05:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-24T23:00:34.2118554-05:00","level":"INFO","msg":"sender: closed","stream_id":"ef6f1a89-2713-4391-9dc9-e92557a47d18"}
+{"time":"2025-07-24T23:00:34.2118554-05:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ef6f1a89-2713-4391-9dc9-e92557a47d18"}
+{"time":"2025-07-24T23:00:34.2118554-05:00","level":"INFO","msg":"handler: closed","stream_id":"ef6f1a89-2713-4391-9dc9-e92557a47d18"}
+{"time":"2025-07-24T23:00:34.2118554-05:00","level":"INFO","msg":"stream: closed","id":"ef6f1a89-2713-4391-9dc9-e92557a47d18"}

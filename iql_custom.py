@@ -36,12 +36,12 @@ class TrainConfig:
     data_folder: str = "Training"  # Folder containing your .h5 files.
     seed: int = 0  # Sets PyTorch and Numpy seeds
     eval_freq: int = int(5e3)  # How often (in iterations) to save checkpoints.
-    max_timesteps: int = int(1e6)  # Number of training iterations.
+    max_timesteps: int = int(1e5)  # Number of training iterations.
     checkpoints_path: Optional[str] = "Model"  # Where to save model checkpoints.
     load_model: str = ""  # If non-empty, load model parameters from this file.
     # IQL hyperparameters
-    buffer_size: int = 2_000_000  # Replay buffer capacity.
-    batch_size: int = 256  # Batch size for training.
+    buffer_size: int = 1_000_000  # Replay buffer capacity. #! this was decreas from 2 mill
+    batch_size: int = 256  # Batch size for training. 
     discount: float = 0.99  # Discount factor.
     tau: float = 0.005  # Target network update rate.
     beta: float = 3.0  # Inverse temperature; small beta approximates BC.
@@ -118,7 +118,8 @@ class ReplayBuffer:
         self._actions[:n_transitions] = self._to_tensor(data["actions"])
         self._rewards[:n_transitions] = self._to_tensor(data["rewards"][..., None])
         self._next_states[:n_transitions] = self._to_tensor(data["next_observations"])
-        self._dones[:n_transitions] = self._to_tensor(data["terminals"][..., None])
+        self._dones[:n_transitions] = self._to_tensor(data["terminals"]).view(-1, 1)
+        #!self._dones[:n_transitions] = self._to_tensor(data["terminals"][..., None])
         self._size += n_transitions
         self._pointer = min(self._size, n_transitions)
         print(f"Dataset size: {n_transitions}")
@@ -142,7 +143,7 @@ def set_seed(seed: int):
     np.random.seed(seed)
     random.seed(seed)
     torch.manual_seed(seed)
-    torch.use_deterministic_algorithms(True)
+    torch.use_deterministic_algorithms(False) #! THis was set to false to allow this in the future look into cuda issues
 
 
 def wandb_init(config: dict) -> None:
@@ -153,7 +154,7 @@ def wandb_init(config: dict) -> None:
         name=config["name"],
         id=str(uuid.uuid4()),
     )
-    wandb.run.save()
+    #!wandb.run.save() This was removed beacue of issues with saving the run 
 
 
 def asymmetric_l2_loss(u: torch.Tensor, tau: float) -> torch.Tensor:

@@ -1,0 +1,22 @@
+2025-07-24 23:00:32,829 INFO    MainThread:33188 [wandb_setup.py:_flush():81] Current SDK version is 0.20.1
+2025-07-24 23:00:32,829 INFO    MainThread:33188 [wandb_setup.py:_flush():81] Configure stats pid to 33188
+2025-07-24 23:00:32,829 INFO    MainThread:33188 [wandb_setup.py:_flush():81] Loading settings from C:\Users\ppwhi\.config\wandb\settings
+2025-07-24 23:00:32,830 INFO    MainThread:33188 [wandb_setup.py:_flush():81] Loading settings from C:\RewardFunction\wandb\settings
+2025-07-24 23:00:32,830 INFO    MainThread:33188 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-07-24 23:00:32,830 INFO    MainThread:33188 [wandb_init.py:setup_run_log_directory():703] Logging user logs to C:\RewardFunction\wandb\run-20250724_230032-ef6f1a89-2713-4391-9dc9-e92557a47d18\logs\debug.log
+2025-07-24 23:00:32,830 INFO    MainThread:33188 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to C:\RewardFunction\wandb\run-20250724_230032-ef6f1a89-2713-4391-9dc9-e92557a47d18\logs\debug-internal.log
+2025-07-24 23:00:32,830 INFO    MainThread:33188 [wandb_init.py:init():831] calling init triggers
+2025-07-24 23:00:32,830 INFO    MainThread:33188 [wandb_init.py:init():836] wandb.init called with sweep_config: {}
+config: {'device': 'cuda', 'data_folder': 'Training', 'seed': 0, 'eval_freq': 5000, 'max_timesteps': 100000, 'checkpoints_path': 'Model\\IQL-custom-190dce81', 'load_model': '', 'buffer_size': 1000000, 'batch_size': 256, 'discount': 0.99, 'tau': 0.005, 'beta': 3.0, 'iql_tau': 0.7, 'iql_deterministic': False, 'normalize': True, 'normalize_reward': False, 'vf_lr': 0.0003, 'qf_lr': 0.0003, 'actor_lr': 0.0003, 'actor_dropout': None, 'project': 'CORL', 'group': 'IQL-Custom', 'name': 'IQL-custom-190dce81', '_wandb': {}}
+2025-07-24 23:00:32,830 INFO    MainThread:33188 [wandb_init.py:init():872] starting backend
+2025-07-24 23:00:33,053 INFO    MainThread:33188 [wandb_init.py:init():875] sending inform_init request
+2025-07-24 23:00:33,068 INFO    MainThread:33188 [wandb_init.py:init():883] backend started and connected
+2025-07-24 23:00:33,069 INFO    MainThread:33188 [wandb_init.py:init():956] updated telemetry
+2025-07-24 23:00:33,206 INFO    MainThread:33188 [wandb_init.py:init():980] communicating run to backend with 90.0 second timeout
+2025-07-24 23:00:33,506 INFO    MainThread:33188 [wandb_init.py:init():1032] starting run threads in backend
+2025-07-24 23:00:33,594 INFO    MainThread:33188 [wandb_run.py:_console_start():2453] atexit reg
+2025-07-24 23:00:33,594 INFO    MainThread:33188 [wandb_run.py:_redirect():2301] redirect: wrap_raw
+2025-07-24 23:00:33,594 INFO    MainThread:33188 [wandb_run.py:_redirect():2370] Wrapping output streams.
+2025-07-24 23:00:33,594 INFO    MainThread:33188 [wandb_run.py:_redirect():2393] Redirects installed.
+2025-07-24 23:00:33,596 INFO    MainThread:33188 [wandb_init.py:init():1078] run started, returning control to user process
+2025-07-24 23:00:33,706 INFO    MsgRouterThr:33188 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.

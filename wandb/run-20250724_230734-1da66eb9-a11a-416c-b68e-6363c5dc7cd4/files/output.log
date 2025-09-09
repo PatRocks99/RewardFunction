@@ -1,0 +1,14 @@
+Iteration 5000: {'value_loss': 286.58270263671875, 'q_loss': 4387.9736328125, 'actor_loss': 50.87501907348633}
+Saved checkpoint to Model\IQL-custom-81aaa304\checkpoint_5000.pt
+Traceback (most recent call last):
+  File "c:\RewardFunction\iql_custom.py", line 588, in <module>
+    train()
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\pyrallis\argparsing.py", line 158, in wrapper_inner
+    response = fn(cfg, *args, **kwargs)
+  File "c:\RewardFunction\iql_custom.py", line 568, in train
+    log_dict = trainer.train(batch)
+  File "c:\RewardFunction\iql_custom.py", line 396, in train
+    adv = self._update_v(observations, actions, log_dict)
+  File "c:\RewardFunction\iql_custom.py", line 342, in _update_v
+    log_dict["value_loss"] = v_loss.item()
+KeyboardInterrupt

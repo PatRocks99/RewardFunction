@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "c:\RewardFunction\iql_custom.py", line 588, in <module>
+    train()
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\pyrallis\argparsing.py", line 158, in wrapper_inner
+    response = fn(cfg, *args, **kwargs)
+  File "c:\RewardFunction\iql_custom.py", line 568, in train
+    log_dict = trainer.train(batch)
+  File "c:\RewardFunction\iql_custom.py", line 395, in train
+    next_v = self.vf(next_observations)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "c:\RewardFunction\iql_custom.py", line 300, in forward
+    return self.v(state)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "c:\RewardFunction\iql_custom.py", line 203, in forward
+    return self.net(x)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\torch\nn\modules\container.py", line 240, in forward
+    input = module(input)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\torch\nn\modules\module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\torch\nn\modules\module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\torch\nn\modules\linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility

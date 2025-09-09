@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "c:\RewardFunction\iql_custom.py", line 588, in <module>
+    train()
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\pyrallis\argparsing.py", line 158, in wrapper_inner
+    response = fn(cfg, *args, **kwargs)
+  File "c:\RewardFunction\iql_custom.py", line 562, in train
+    wandb_init(asdict(config))
+  File "c:\RewardFunction\iql_custom.py", line 157, in wandb_init
+    wandb.run.save("model_info/")   #!This should save things to the model info folder now
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\wandb\sdk\wandb_run.py", line 391, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\wandb\sdk\wandb_run.py", line 449, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\wandb\sdk\wandb_run.py", line 436, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\wandb\sdk\wandb_run.py", line 2074, in save
+    return self._save(
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\site-packages\wandb\sdk\wandb_run.py", line 2133, in _save
+    target_path.symlink_to(source_path)
+  File "C:\Users\ppwhi\anaconda3\envs\f110_training\lib\pathlib.py", line 1255, in symlink_to
+    self._accessor.symlink(target, self, target_is_directory)
+OSError: [WinError 1314] A required privilege is not held by the client: 'C:\\RewardFunction\\model_info' -> 'C:\\RewardFunction\\wandb\\run-20250724_230032-ef6f1a89-2713-4391-9dc9-e92557a47d18\\files\\model_info'

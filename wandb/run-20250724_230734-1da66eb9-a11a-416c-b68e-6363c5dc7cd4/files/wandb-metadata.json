@@ -1,0 +1,43 @@
+{
+  "os":  "Windows-10-10.0.26100-SP0",
+  "python":  "CPython 3.10.18",
+  "startedAt":  "2025-07-25T04:07:34.299960Z",
+  "program":  "c:\\RewardFunction\\iql_custom.py",
+  "codePath":  "iql_custom.py",
+  "git":  {
+    "remote":  "https://github.com/PatRocks99/RewardFunction.git",
+    "commit":  "931a39bd1a56f4efe9faace9e2b3ff7f3611a564"
+  },
+  "email":  "patwhite@iastate.edu",
+  "root":  "C:\\RewardFunction",
+  "host":  "Pat_AI_Machine",
+  "executable":  "C:\\Users\\ppwhi\\anaconda3\\envs\\f110_training\\python.exe",
+  "codePathLocal":  "iql_custom.py",
+  "cpu_count":  8,
+  "cpu_count_logical":  16,
+  "gpu":  "NVIDIA GeForce RTX 5070 Ti",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "999137734656",
+      "used":  "395967176704"
+    }
+  },
+  "memory":  {
+    "total":  "33463668736"
+  },
+  "cpu":  {
+    "count":  8,
+    "countLogical":  16
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 5070 Ti",
+      "memoryTotal":  "17094934528",
+      "cudaCores":  8960,
+      "architecture":  "Blackwell",
+      "uuid":  "GPU-ae12be4f-10d9-1922-e862-9c866b5c42f1"
+    }
+  ],
+  "cudaVersion":  "12.9"
+}
