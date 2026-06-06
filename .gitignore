@@ -1,9 +1,21 @@
-# Ignore everything in these folders
-Data/*
-raw_data/*
-Training/*
+# Track the portable template only.
+*
 
-# But keep the folders
-!Data/.gitkeep
-!raw_data/.gitkeep
-!Training/.gitkeep
+# Explicitly keep the larger working/data/model folders out of git.
+3_Full_Data_Terminals/
+4_Even_More_Data/
+5_New_reward_function/
+6_Split_Data_Better_Steering/
+Model/
+
+# Keep this ignore file.
+!.gitignore
+
+# Keep the template folder and everything inside it.
+!0_TemplateFolder/
+!0_TemplateFolder/**
+
+# Still ignore generated/cache files inside the template.
+0_TemplateFolder/**/__pycache__/
+0_TemplateFolder/**/*.py[cod]
+0_TemplateFolder/**/.ipynb_checkpoints/
