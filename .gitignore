@@ -11,11 +11,29 @@ Model/
 # Keep this ignore file.
 !.gitignore
 
+# Keep the Ubuntu/WSL template folder and everything inside it.
+!00_Ubuntu_Template/
+!00_Ubuntu_Template/**
+
 # Keep the template folder and everything inside it.
 !0_TemplateFolder/
 !0_TemplateFolder/**
 
 # Still ignore generated/cache files inside the template.
+00_Ubuntu_Template/**/__pycache__/
+00_Ubuntu_Template/**/*.py[cod]
+00_Ubuntu_Template/**/.ipynb_checkpoints/
+00_Ubuntu_Template/deploy_training_matrix/
+00_Ubuntu_Template/final_best_models/
+00_Ubuntu_Template/deploy_training/
+00_Ubuntu_Template/deploy_training_matrix_logs/
+00_Ubuntu_Template/deploy_training_td3bc_refine/
+00_Ubuntu_Template/experiments_mediumexpert_100/
+00_Ubuntu_Template/matrix_logs/
+00_Ubuntu_Template/best_of_training_matrix/
+00_Ubuntu_Template/*_stdout.log
+00_Ubuntu_Template/*_stderr.log
+00_Ubuntu_Template/*.pid
 0_TemplateFolder/**/__pycache__/
 0_TemplateFolder/**/*.py[cod]
 0_TemplateFolder/**/.ipynb_checkpoints/

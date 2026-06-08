@@ -1,0 +1,15 @@
+name: f110_training
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - h5py
+  - pytorch
+  - pytorch-cuda=12.1
+  - pip
+  - pip:
+      - wandb

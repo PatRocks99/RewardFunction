@@ -28,13 +28,22 @@ from offline_common import DeterministicActor, GaussianActor, load_h5_transition
 from simulation_eval_placeholder import simulation_evaluation_placeholder  # noqa: E402
 
 
+DATA_ROOT = Path(os.environ.get("F110_DATA_ROOT", "/mnt/p/Car/NewCar"))
 REWARD_DATASET_DIRS = {
-    "reward_v1": Path(r"P:\Car\NewCar\processed_reward_V1_datasets"),
-    "reward_v2": Path(r"P:\Car\NewCar\processed_reward_V2_datasets"),
-    "reward_v3": Path(r"P:\Car\NewCar\processed_reward_V3_datasets"),
+    "reward_v1": Path(
+        os.environ.get("F110_REWARD_V1_DIR", str(DATA_ROOT / "processed_reward_V1_datasets"))
+    ),
+    "reward_v2": Path(
+        os.environ.get("F110_REWARD_V2_DIR", str(DATA_ROOT / "processed_reward_V2_datasets"))
+    ),
+    "reward_v3": Path(
+        os.environ.get("F110_REWARD_V3_DIR", str(DATA_ROOT / "processed_reward_V3_datasets"))
+    ),
 }
 
-SELECTED_DATASET_ROOT = Path(r"P:\Car\NewCar\selected_training_datasets")
+SELECTED_DATASET_ROOT = Path(
+    os.environ.get("F110_SELECTED_DATASET_ROOT", str(DATA_ROOT / "selected_training_datasets"))
+)
 
 
 FINAL_NAMES = {

@@ -19,7 +19,7 @@ experiments, plus one all-rewards dataset containing every reward column.
 
 Run from this folder or from the repository parent:
 
-    python 6_Split_Data_Better_Steering/rosbag_to_reward_datasets.py
+    python 00_Ubuntu_Template/rosbag_to_reward_datasets.py
 
 For interactive use in VS Code/Jupyter, run the # %% cells top to bottom.
 """
@@ -29,6 +29,7 @@ from __future__ import annotations
 import bisect
 import json
 import math
+import os
 import sqlite3
 import traceback
 from dataclasses import dataclass
@@ -75,13 +76,14 @@ if SCRIPT_DIR.name.lower() in KNOWN_PROCESSING_DIRS:
     PROCESSING_ROOT = SCRIPT_DIR
 else:
     WORKSPACE_ROOT = SCRIPT_DIR
-    PROCESSING_ROOT = WORKSPACE_ROOT / "6_Split_Data_Better_Steering"
+    PROCESSING_ROOT = WORKSPACE_ROOT / "00_Ubuntu_Template"
 
 
-# Edit these paths for new real-data dumps.
-BAG_ROOT = Path("P:/Car/NewCar/NewTrackData")
+# Edit these paths for new real-data dumps, or set F110_DATA_ROOT.
+DEFAULT_DATA_ROOT = Path(os.environ.get("F110_DATA_ROOT", "/mnt/p/Car/NewCar"))
+BAG_ROOT = Path(os.environ.get("F110_BAG_ROOT", str(DEFAULT_DATA_ROOT / "NewTrackData")))
 BAG_ROOTS = [BAG_ROOT]
-OUTPUT_ROOT = PROCESSING_ROOT
+OUTPUT_ROOT = Path(os.environ.get("F110_OUTPUT_ROOT", str(DEFAULT_DATA_ROOT)))
 
 # Topic names seen in the original notebooks plus common alternatives.
 ACKERMANN_TOPICS = [

@@ -1,0 +1,13 @@
+name: f110_data_processing
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - h5py
+  - pillow
+  - pyyaml
+  - pip
+  - pip:
+      - rosbags

@@ -10,8 +10,8 @@ Workflow:
 
 Run with the f110 training environment:
 
-    & 'C:\\Users\\ppwhi\\anaconda3\\envs\\f110_training\\python.exe' `
-      6_Split_Data_Better_Steering\\training_notebooks\\run_deploy_training_matrix.py
+    conda activate f110_training
+    python 00_Ubuntu_Template/training_notebooks/run_deploy_training_matrix.py --device cuda
 """
 
 from __future__ import annotations
