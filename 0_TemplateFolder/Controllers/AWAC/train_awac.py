@@ -29,19 +29,39 @@ class Config:
     checkpoint_dir: str = "runs/awac"
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
     seed: int = 0
+    # Tune training budget with dataset size; use enough steps for several passes through the replay data.
     max_steps: int = 100000
-    batch_size: int = 256
+    # Larger batches stabilize Q/advantage estimates, while smaller batches add noise but train faster per update.
+    batch_size: int = 512
     eval_freq: int = 5000
+    # Discount controls reward horizon; lower it if bootstrapped Q-values become noisy or overly optimistic.
     discount: float = 0.99
+    # Target-network update rate; smaller values are steadier, larger values track the critic faster.
     tau: float = 0.005
+    # AWAC temperature; lower values imitate only high-advantage actions, higher values stay closer to BC.
     awac_lambda: float = 1.0
+    # Caps exponentiated advantages so a few high-Q samples do not dominate the actor update.
     max_weight: float = 20.0
+    # Learning rates are primary sweep knobs; reduce critic_lr first if Q-values or actor weights explode.
     actor_lr: float = 3e-4
     critic_lr: float = 3e-4
-    normalize_obs: bool = True
+    normalize_obs: bool = False
+    # Keep false for this transformed policy unless deployment also unnormalizes actions consistently.
     normalize_actions: bool = False
+    # Increase capacity only if losses underfit; larger critics can overestimate on narrow offline datasets.
     hidden_dim: int = 256
     hidden_layers: int = 2
+
+
+# %%
+def transformed_gaussian_log_prob(
+    actor: GaussianActor,
+    observations: torch.Tensor,
+    actions: torch.Tensor,
+    eps: float = 1e-6,
+) -> torch.Tensor:
+    """Log-probability under the actor's sigmoid-speed/tanh-steering Gaussian."""
+    return actor.log_prob(observations, actions, eps)
 
 
 # %%
@@ -82,8 +102,8 @@ def train(config: Config) -> Path:
             q = critic(observations, actions)
             weights = torch.exp((q - v) / config.awac_lambda).clamp(max=config.max_weight)
 
-        dist = actor(observations)
-        log_prob = dist.log_prob(actions).sum(dim=-1, keepdim=True)
+        # AWAC is weighted behavior cloning: favor dataset actions whose Q exceeds the current policy value.
+        log_prob = transformed_gaussian_log_prob(actor, observations, actions)
         actor_loss = -(weights * log_prob).mean()
         actor_optimizer.zero_grad()
         actor_loss.backward()
@@ -100,6 +120,8 @@ def train(config: Config) -> Path:
                 "stats": stats,
             }
             save_checkpoint(checkpoint_dir / f"checkpoint_{step}.pt", payload)
+            # Actor loss is a training signal, not an offline-control score; prefer held-out/simulation metrics
+            # when choosing a deployable checkpoint.
             if actor_loss.item() < best_actor_loss:
                 best_actor_loss = actor_loss.item()
                 save_checkpoint(checkpoint_dir / "best_awac.pt", payload)
@@ -125,7 +147,7 @@ def parse_args() -> Config:
     parser.add_argument("--max-weight", type=float, default=20.0)
     parser.add_argument("--actor-lr", type=float, default=3e-4)
     parser.add_argument("--critic-lr", type=float, default=3e-4)
-    parser.add_argument("--normalize-obs", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--normalize-obs", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--normalize-actions", action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument("--hidden-dim", type=int, default=256)
     parser.add_argument("--hidden-layers", type=int, default=2)

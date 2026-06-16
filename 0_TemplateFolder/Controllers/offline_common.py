@@ -283,21 +283,53 @@ class DeterministicActor(nn.Module):
 class GaussianActor(nn.Module):
     def __init__(self, obs_dim: int, action_dim: int, hidden_dim: int = 256, hidden_layers: int = 2):
         super().__init__()
-        self.mean = MLP([obs_dim, *([hidden_dim] * hidden_layers), action_dim], output_activation=nn.Tanh)
+        self.mean = MLP([obs_dim, *([hidden_dim] * hidden_layers), action_dim])
         self.log_std = nn.Parameter(torch.zeros(action_dim, dtype=torch.float32))
 
     def forward(self, obs: torch.Tensor) -> torch.distributions.Normal:
         std = torch.exp(self.log_std.clamp(-20.0, 2.0))
         return torch.distributions.Normal(self.mean(obs), std)
 
+    def raw_to_action(self, raw_action: torch.Tensor) -> torch.Tensor:
+        # Action convention: speed is [0, 1]; remaining controls are [-1, 1].
+        speed = torch.sigmoid(raw_action[..., :1])
+        if raw_action.shape[-1] == 1:
+            return speed
+        steering = torch.tanh(raw_action[..., 1:])
+        return torch.cat([speed, steering], dim=-1)
+
+    def action_to_raw(self, action: torch.Tensor, eps: float = 1e-6) -> torch.Tensor:
+        speed = action[..., :1].clamp(eps, 1.0 - eps)
+        raw_speed = torch.logit(speed)
+        if action.shape[-1] == 1:
+            return raw_speed
+        steering = action[..., 1:].clamp(-1.0 + eps, 1.0 - eps)
+        raw_steering = torch.atanh(steering)
+        return torch.cat([raw_speed, raw_steering], dim=-1)
+
+    def log_prob(self, obs: torch.Tensor, action: torch.Tensor, eps: float = 1e-6) -> torch.Tensor:
+        raw_action = self.action_to_raw(action, eps)
+        transformed_action = self.raw_to_action(raw_action)
+        dist = self(obs)
+        speed = transformed_action[..., :1].clamp(eps, 1.0 - eps)
+        correction = torch.log(speed * (1.0 - speed) + eps)
+        if transformed_action.shape[-1] > 1:
+            steering = transformed_action[..., 1:].clamp(-1.0 + eps, 1.0 - eps)
+            correction = torch.cat([correction, torch.log(1.0 - steering.pow(2) + eps)], dim=-1)
+        return (dist.log_prob(raw_action) - correction).sum(dim=-1, keepdim=True)
+
     def deterministic_action(self, obs: torch.Tensor) -> torch.Tensor:
-        return self.mean(obs).clamp(-1.0, 1.0)
+        return self.raw_to_action(self.mean(obs))
 
     def sample(self, obs: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         dist = self(obs)
         raw_action = dist.rsample()
-        action = torch.tanh(raw_action)
-        log_prob = dist.log_prob(raw_action) - torch.log(1.0 - action.pow(2) + 1e-6)
+        action = self.raw_to_action(raw_action)
+        speed = action[..., :1]
+        correction = torch.log(speed * (1.0 - speed) + 1e-6)
+        if action.shape[-1] > 1:
+            correction = torch.cat([correction, torch.log(1.0 - action[..., 1:].pow(2) + 1e-6)], dim=-1)
+        log_prob = dist.log_prob(raw_action) - correction
         return action, log_prob.sum(dim=-1, keepdim=True)
 
 
