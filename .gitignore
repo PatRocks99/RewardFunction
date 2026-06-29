@@ -11,6 +11,16 @@ Model/
 # Keep this ignore file.
 !.gitignore
 
+# Keep the Windows visual simulator runbook and helper scripts, but not the
+# downloaded/extracted simulator binaries.
+!sim/
+!sim/.gitignore
+!sim/README.md
+!sim/scripts/
+!sim/scripts/**
+sim/downloads/
+sim/windows_practice/
+
 # Keep the Ubuntu/WSL template folder and everything inside it.
 !00_Ubuntu_Template/
 !00_Ubuntu_Template/**
