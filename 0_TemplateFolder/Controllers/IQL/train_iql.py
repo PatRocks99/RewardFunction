@@ -59,6 +59,8 @@ def asymmetric_l2_loss(error: torch.Tensor, tau: float) -> torch.Tensor:
 
 
 def actor_bc_loss(actor, observations: torch.Tensor, actions: torch.Tensor) -> torch.Tensor:
+    if hasattr(actor, "log_prob"):
+        return -actor.log_prob(observations, actions)
     output = actor(observations)
     if isinstance(output, torch.distributions.Distribution):
         return -output.log_prob(actions).sum(dim=-1, keepdim=True)
